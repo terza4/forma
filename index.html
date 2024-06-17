@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/7a5580806e.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        #login-container {
+            width: 460px;
+            margin: 0 auto;
+        }
+
+        form label,
+        form input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form input {
+            padding: 8px;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form div {
+            margin: 16px 0px;
+        }
+
+        .fa-stack{
+            position: absolute;
+            margin-top: 1.5%;
+            margin-left: 26%;
+        }
+        /* ikonice*/
+        .fas{
+            color: green;
+        }
+        .fas2{
+            color: red;
+        }
+        .fass{
+            color: green;
+        }
+        .fass2{
+            color: red;
+        }
+        .hidden{
+            display: none;
+        }
+        .shown{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-container">
+
+        <form>
+            <div>
+                <label  for="username">Username:
+                    <span class="fa-stack fa-1x">
+                        <i  class="fa-solid fas fa-check fa-stack-1x"></i>
+                        <i class="fa-solid fas2 fa-x fa-stack-1x"></i>
+                </span> </label>
+                <input id="username" type="text">
+                 
+            </div>
+
+            <div>
+                <label for="password">Password:
+                    <span class="fa-stack fa-1x">
+                        <i  class="fa-solid fass fa-check fa-stack-1x"></i>
+                        <i  class="fa-solid fass2 fa-x fa-stack-1x"></i>
+                </span></label>
+                <input id="password" type="password">
+            </div>
+
+            <input id="button" type="submit" value="Login">
+        </form>
+
+    </div>
+
+    <script src="./js/jquery-3.7.1.slim.min.js" ></script>
+
+    <script>
+        let fail = $("<p>please, enter username</p>");
+        let fail1 = $("<p>please, enter valid username</p>");
+            let fail2 = $("<p>please enter password</p>");
+            let fail3 = $("<p>please, enter valid password</p>");
+            let succes = $("<p>Successful login</p>");
+            //ikonice
+            let iconUsername = $(".fas");
+            let iconUsername2 = $(".fas2");
+            let iconPassword = $(".fass");
+            let iconPassword2 = $(".fass2");
+
+            
+            iconUsername.addClass("hidden");
+            iconUsername2.addClass("hidden");
+            iconPassword.addClass("hidden");
+            iconPassword2.addClass("hidden");
+            
+            
+     
+     $("#login-container").submit( function(e) {
+     
+     e.preventDefault();
+   
+    
+    var username = $("#username").val();
+    var password = $("#password").val();
+    var message = $("#button");
+    
+
+    if (username === "") {
+        $("#button").after(fail);
+        iconUsername2.removeClass("hidden");
+        iconUsername2.addClass("shown");
+        $("#username").css("border-color", "red");
+    } else if (username !== "new_user") {
+        $("#button").after(fail1);
+        iconUsername2.removeClass("hidden");
+        iconUsername2.addClass("shown");
+        $("#username").css("border-color", "red");
+    } else if(username === "new_user"){
+        iconUsername.removeClass("hidden");
+        iconUsername.addClass("shown");
+        $("#username").css("border-color", "green");
+    }
+
+    if (password === "") {
+        $("#button").after(fail2);
+        iconPassword2.removeClass("hidden");
+        iconPassword2.addClass("shown");
+        $("#password").css("border-color", "red");
+    } else if (password !== "123456789") {
+        $("#button").after(fail3);
+        iconPassword2.removeClass("hidden");
+        iconPassword2.addClass("shown");
+        $("#password").css("border-color", "red");
+    }else if(password === "123456789"){
+        iconPassword.removeClass("hidden");
+        iconPassword.addClass("shown");
+        $("#password").css("border-color", "green");
+    }
+
+    if (username === "new_user" && password === "123456789") {
+        $("#button").after(succes);
+        iconUsername.removeClass("hidden");
+        iconUsername.addClass("shown");
+        iconPassword.removeClass("hidden");
+        iconPassword.addClass("shown");
+        $("#password").css("border-color", "green");
+    }
+});
+
+     
+
+        
+    </script>
+
+    
+</body>
+</html>
